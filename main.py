@@ -7,8 +7,6 @@ url = os.environ.get('URL')
 email = os.environ.get('EMAIL')
 # 配置用户名对应的密码 和上面的email对应上
 passwd = os.environ.get('PASSWD')
-# server酱
-SCKEY = os.environ.get('SCKEY')
 
 login_url = '{}/auth/login'.format(url)
 check_url = '{}/user/checkin'.format(url)
@@ -31,13 +29,11 @@ try:
     print(result['msg'])
     content = result['msg']
     # 进行推送
-    if SCKEY != '':
-        push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
-        requests.post(url=push_url)
-        print('推送成功')
+    push_url = 'https://xizhi.qqoq.net/XZ2c34a41fad98c5a9b86c115b3a165aa1.send?title=机场签到&content={}'.format(content)
+    requests.post(url=push_url)
+    print('推送成功')
 except:
     content = '签到失败'
     print(content)
-    if SCKEY != '':
-        push_url = 'https://sctapi.ftqq.com/{}.send?title=机场签到&desp={}'.format(SCKEY, content)
-        requests.post(url=push_url)
+    push_url = 'https://xizhi.qqoq.net/XZ2c34a41fad98c5a9b86c115b3a165aa1.send?title=机场签到&content={}'.format(content)
+    requests.post(url=push_url)
